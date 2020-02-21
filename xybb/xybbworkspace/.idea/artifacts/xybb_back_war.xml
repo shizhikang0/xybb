@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="xybb-back:war">
+    <output-path>$PROJECT_DIR$/xybb-back/target</output-path>
+    <root id="archive" name="xybb-back.war">
+      <element id="artifact" artifact-name="xybb-back:war exploded" />
+    </root>
+  </artifact>
+</component>

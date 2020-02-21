@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/xybb-common/xybb-common.iml" filepath="$PROJECT_DIR$/xybb-common/xybb-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xybb-crud/xybb-crud.iml" filepath="$PROJECT_DIR$/xybb-crud/xybb-crud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xybb-manage/xybb-manage.iml" filepath="$PROJECT_DIR$/xybb-manage/xybb-manage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xybb-parent/xybb-parent.iml" filepath="$PROJECT_DIR$/xybb-parent/xybb-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xybb-sso/xybb-sso.iml" filepath="$PROJECT_DIR$/xybb-sso/xybb-sso.iml" />
+    </modules>
+  </component>
+</project>

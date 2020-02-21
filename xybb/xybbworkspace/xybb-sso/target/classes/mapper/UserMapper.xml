@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xybb.sso.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.xybb.sso.bean.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="name" jdbcType="VARCHAR" property="name" />
+    <id column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="head" jdbcType="VARCHAR" property="head" />
+    <result column="autograph" jdbcType="VARCHAR" property="autograph" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+  </resultMap>
+
+  <insert id="insertGenerateUser" parameterType="Map" useGeneratedKeys="true">
+    INSERT INTO t_user (type,password,phone,createtime,updatetime,salt)
+    VALUES (1,#{password},#{phoneNum},now(),now(),#{salt})
+  </insert>
+
+</mapper>

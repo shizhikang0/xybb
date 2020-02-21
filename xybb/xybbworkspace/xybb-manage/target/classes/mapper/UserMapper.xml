@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xybb.manage.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.xybb.manage.bean.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="name" jdbcType="VARCHAR" property="name" />
+    <id column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="head" jdbcType="VARCHAR" property="head" />
+    <result column="autograph" jdbcType="VARCHAR" property="autograph" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    </resultMap>
+
+    <select id="selectUserById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT * FROM t_user WHERE id = #{id}
+    </select>
+
+    <update id="updateUserInfo" parameterType="java.util.Map">
+        UPDATE t_user SET name = #{name},sex = #{sex}, address = #{address}, head = #{head}, autograph = #{autograph}, updatetime = now() WHERE id = #{id}
+    </update>
+
+    <update id="editUser" parameterType="java.util.Map" useGeneratedKeys="true" keyColumn="id">
+        UPDATE t_user SET name = #{name}, phone = #{phone}, address = #{address},autograph = #{autograph}, updatetime = now() WHERE id = #{id}
+    </update>
+
+    <update id="resetPassword" parameterType="java.util.Map" useGeneratedKeys="true" keyColumn="id">
+        UPDATE t_user SET password = #{password},updatetime = now() WHERE id = #{id}
+    </update>
+
+    <update id="quitSeller" parameterType="java.lang.Integer" useGeneratedKeys="true" keyColumn="id">
+      UPDATE t_user SET type = 1, updatetime = now() WHERE id = #{id}
+    </update>
+
+    <update id="deleteAdmins" useGeneratedKeys="true">
+       UPDATE t_user SET type = 7, updatetime = now()
+       WHERE id IN
+       <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+           #{item}
+       </foreach>
+    </update>
+
+    <update id="editAdmin" parameterType="com.xybb.manage.bean.User" useGeneratedKeys="true" keyColumn="id">
+        UPDATE t_user SET name = #{name}, sex = #{sex}, phone = #{phone}, autograph = #{autograph} WHERE id = #{id}
+    </update>
+
+    <update id="editSelf" parameterType="com.xybb.manage.bean.User" useGeneratedKeys="true" keyColumn="id">
+        UPDATE t_user SET name = #{name}, sex = #{sex}, password = #{password}, phone = #{phone}, autograph = #{autograph} WHERE id = #{id}
+    </update>
+
+    <update id="controlAdmin" parameterType="java.util.Map" useGeneratedKeys="true" keyColumn="id">
+        UPDATE t_user SET type = #{type} WHERE id = #{id}
+    </update>
+
+    <insert id="addAdmin" parameterType="com.xybb.manage.bean.User" useGeneratedKeys="true" keyColumn="id">
+        INSERT INTO t_user (type,name,sex,password,phone,autograph,createtime,updatetime,salt)
+        VALUES (4,#{name},#{sex},#{password},#{phone},#{autograph},now(),now(),#{salt})
+    </insert>
+
+</mapper>

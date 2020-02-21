@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xybb.manage.dao.GoodsBuyerMapper">
+  <resultMap id="BaseResultMap" type="com.xybb.manage.bean.GoodsBuyer">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="buyer_id" jdbcType="INTEGER" property="buyerId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+    <resultMap id="GoodsBuyerResultMap" type="com.xybb.manage.result.GoodsBuyerResult">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+        <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+        <association property="goods" column="goods_id" javaType="com.xybb.manage.bean.Goods"
+                     select="com.xybb.manage.dao.GoodsMapper.selectGoodsById"/>
+        <association property="buyer" column="buyer_id" javaType="com.xybb.manage.bean.User"
+                     select="com.xybb.manage.dao.UserMapper.selectUserById"/>
+    </resultMap>
+    <insert id="insertOne" parameterType="com.xybb.manage.bean.GoodsBuyer" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_goods_buyer
+        (goods_id,buyer_id,createtime,updatetime)
+        VALUES
+        (#{goodsId},#{buyerId},now(),now())
+    </insert>
+
+    <select id="selectListByUserId" parameterType="java.lang.Integer" resultMap="GoodsBuyerResultMap">
+        SELECT * FROM t_goods_buyer WHERE buyer_id = #{buyerId}
+    </select>
+
+    <update id="cancelPreBuy" parameterType="com.xybb.manage.bean.GoodsBuyer" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        UPDATE t_goods_buyer SET status = 3,updatetime = now() WHERE goods_id = #{goodsId} AND buyer_id = #{buyerId}
+    </update>
+
+    <update id="updateOne" parameterType="com.xybb.manage.bean.GoodsBuyer" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        UPDATE t_goods_buyer SET status = 1,updatetime = now() WHERE goods_id = #{goodsId} AND buyer_id = #{buyerId}
+    </update>
+</mapper>

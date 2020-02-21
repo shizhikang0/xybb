@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xybb.manage.dao.GoodsSellerMapper">
+  <resultMap id="BaseResultMap" type="com.xybb.manage.bean.GoodsSeller">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="seller_id" jdbcType="INTEGER" property="sellerId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <resultMap id="GoodsSellerResultMap" type="com.xybb.manage.result.GoodsSellerResult">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <association property="goods" column="goods_id" javaType="com.xybb.manage.bean.Goods"
+                 select="com.xybb.manage.dao.GoodsMapper.selectGoodsById"/>
+    <association property="seller" column="seller_id" javaType="com.xybb.manage.bean.User"
+                 select="com.xybb.manage.dao.UserMapper.selectUserById"/>
+  </resultMap>
+  <select id="selectGoodsSellerByGoodsId" parameterType="java.lang.Integer" resultMap="GoodsSellerResultMap">
+    SELECT * FROM t_goods_seller WHERE goods_id = #{goodsId}
+  </select>
+  <select id="selectListByUserId" parameterType="java.lang.Integer" resultMap="GoodsSellerResultMap">
+    SELECT * FROM t_goods_seller WHERE seller_id = #{sellerId}
+  </select>
+  <insert id="insertOne" parameterType="com.xybb.manage.bean.GoodsSeller" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+    INSERT INTO t_goods_seller (goods_id,seller_id,createtime,updatetime) VALUES (#{goodsId},#{sellerId},now(),now())
+  </insert>
+</mapper>

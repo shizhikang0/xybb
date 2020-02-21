@@ -1,0 +1,48 @@
+#header{ position: relative; width: 100%; height: 250px; }
+#login-main,#register-main{ top:120px;margin: 0 auto 0 60%; padding: 40px 40px 50px 40px; background-color: #fff; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: 0 0 5px rgba(0,0,0,.09); box-shadow: 0 0 5px rgba(0,0,0,.09); display: table; position: relative; z-index: 1;}
+.layui-tab-title li{ padding: 0 41px; }
+.layui-tab-title{ margin-bottom: 20px; }
+.layui-tab-content{ padding: 0; }
+.layui-input:focus, .layui-textarea:focus { border-color: rgb(30, 159, 255)!important;}
+
+.register-btn,.login-btn{ background-color: rgb(30, 159, 255); width: 100%; font-size: 16px; }
+.right-box{ width: 145px; padding-left: 80px; }
+.right-box p{ color: #666; }
+.right-box a{ color: rgb(30, 159, 255); font-size: 16px; line-height: 50px; }
+.right-box a:hover{ text-decoration: underline; }
+.layui-layer-hui .layui-layer-content{ color: #fff; }
+
+/*注册*/
+.phone{ position: relative; }
+.phoneCode,.captchaCode{ width: 155px; display: inline-block; }
+.captchaImage{ width: 125px; height: 36px; cursor: pointer; vertical-align: top; float: right; border: #ccc solid 1px; }
+.get-phoneCode{ width: 125px; display: inline-block; position: absolute; right: 0; height: 38px; background-color: rgb(30, 159, 255); color: #fff; text-align: center; line-height: 38px; border-radius: 2px; }
+.get-phoneCode:hover{ color: #fff; }
+.showbox{
+    display: none;
+    width: 125px;
+    height: 37px;
+    vertical-align: top;
+    line-height: 38px;
+    text-align: center;
+    float: right;
+    border: #e6e6e6 solid 1px;
+    border-radius: 2px;
+    background-color: #e6e6e6;
+    color: #bbb;
+}
+.layui-form input[type=checkbox], .layui-form input[type=radio], .layui-form select{ display: inline-block; }
+.layui-tab-brief>.layui-tab-title .layui-this{ color: rgb(30, 159, 255); }
+.layui-tab-brief>.layui-tab-more li.layui-this:after, .layui-tab-brief>.layui-tab-title .layui-this:after{ border-color: rgb(30, 159, 255); }
+.check-wrap{ display: block; height: 38px; line-height: 38px;}
+.check-wrap a{ color: rgb(30, 159, 255); }
+.check-wrap a:hover{ text-decoration: underline; }
+.checkbox{ height: 16px; width: 16px; vertical-align: sub; margin-right: 5px; }
+.reg-right{ margin-top: 110px; }
+
+/*登录*/
+#login-main{ height: 205px;}
+.forgetpwd{ text-align: right;}
+.forgetpwd a{ color: rgb(30, 159, 255);}
+.forgetpwd a:hover{ text-decoration: underline; }
+.log-right{ padding-top: 80px; }

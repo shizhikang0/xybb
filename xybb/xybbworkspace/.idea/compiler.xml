@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="xybb-common" />
+        <module name="xybb-crud" />
+        <module name="xybb-manage" />
+        <module name="xybb-sso" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="xybb-back" target="1.7" />
+      <module name="xybb-common" target="1.7" />
+      <module name="xybb-crud" target="1.7" />
+      <module name="xybb-manage" target="1.7" />
+      <module name="xybb-manage-controller" target="1.7" />
+      <module name="xybb-manage-mapper" target="1.7" />
+      <module name="xybb-manage-pojo" target="1.7" />
+      <module name="xybb-manage-service" target="1.7" />
+      <module name="xybb-parent" target="1.7" />
+      <module name="xybb-sso" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

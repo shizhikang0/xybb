@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xybb.crud.dao.GoodsMapper">
+    <resultMap id="BaseResultMap" type="com.xybb.crud.bean.Goods">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="detail" jdbcType="VARCHAR" property="detail" />
+        <result column="type_id" jdbcType="INTEGER" property="typeId" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="price" jdbcType="DECIMAL" property="price" />
+        <result column="original_price" jdbcType="DECIMAL" property="originalPrice" />
+        <result column="num" jdbcType="INTEGER" property="num" />
+        <result column="picture1" jdbcType="VARCHAR" property="picture1" />
+        <result column="picture2" jdbcType="VARCHAR" property="picture2" />
+        <result column="picture3" jdbcType="VARCHAR" property="picture3" />
+        <result column="page_views" jdbcType="INTEGER" property="pageViews" />
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+        <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    </resultMap>
+
+    <resultMap id="GoodsResultMap" type="com.xybb.crud.result.GoodsResult">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="detail" jdbcType="VARCHAR" property="detail" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="price" jdbcType="DECIMAL" property="price" />
+        <result column="original_price" jdbcType="DECIMAL" property="originalPrice" />
+        <result column="num" jdbcType="INTEGER" property="num" />
+        <result column="picture1" jdbcType="VARCHAR" property="picture1" />
+        <result column="picture2" jdbcType="VARCHAR" property="picture2" />
+        <result column="picture3" jdbcType="VARCHAR" property="picture3" />
+        <result column="page_views" jdbcType="INTEGER" property="pageViews" />
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+        <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+        <association property="goodsType" column="type_id"
+                     select="com.xybb.crud.dao.GoodsTypeMapper.selectGoodsTypeById"/>
+        <association property="goodsSeller" column="id"
+                     select="com.xybb.crud.dao.GoodsSellerMapper.selectGoodsSellerByGoodsId"/>
+    </resultMap>
+
+    <select id="queryGoodsByType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT * FROM t_goods WHERE status = 2 AND type_id = #{goodsTypeId} ORDER BY updatetime DESC
+    </select>
+
+    <select id="queryGoodsByKeyword" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT tg.* FROM t_goods tg
+        INNER JOIN t_goods_type tgt
+        ON tg.type_id = tgt.id
+        WHERE status = 2 AND
+        (tg.name like "%"#{search}"%" OR tg.detail like "%"#{search}"%" OR tgt.name like "%"#{search}"%")
+        ORDER BY tg.updatetime DESC
+    </select>
+
+    <select id="selectGoodsById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT * FROM t_goods WHERE id = #{goodsId}
+    </select>
+
+    <select id="selectGoodsResultById" parameterType="java.lang.Integer" resultMap="GoodsResultMap">
+        SELECT * FROM t_goods WHERE id = #{goodsId}
+    </select>
+
+    <insert id="insertGoods" parameterType="com.xybb.crud.bean.Goods" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_goods
+        (name,detail,type_id,status,price,original_price,num,picture1,picture2,picture3,page_views,createtime,updatetime)
+        VALUES
+        (#{name},#{detail},#{typeId},1,#{price},#{originalPrice},1,#{picture1},#{picture2},#{picture3},0,now(),now())
+    </insert>
+
+    <select id="selectBroadCastList" resultMap="BaseResultMap">
+        SELECT * FROM t_goods WHERE status = 2 ORDER BY updatetime DESC LIMIT 0,3
+    </select>
+
+    <select id="selectPopularList" resultMap="BaseResultMap">
+        SELECT * FROM t_goods WHERE status = 2 ORDER BY page_views DESC LIMIT 0,10
+    </select>
+
+    <select id="selectNewList" resultMap="BaseResultMap">
+        SELECT * FROM t_goods WHERE status = 2 ORDER BY updatetime DESC LIMIT 0,10
+    </select>
+
+    <select id="selectPreBuyListByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT g.id,g.name,g.detail,g.type_id,g.status,g.price,g.original_price,g.num,g.picture1,g.picture2,g.picture3,g.page_views,g.createtime,g.updatetime
+        FROM t_goods g, t_goods_buyer gb
+        WHERE g.id = gb.goods_id AND gb.buyer_id = #{userId} AND gb.status = 1
+    </select>
+</mapper>

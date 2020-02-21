@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="xybb-crud:war">
+    <output-path>$PROJECT_DIR$/xybb-crud/target</output-path>
+    <root id="archive" name="xybb-crud.war">
+      <element id="artifact" artifact-name="xybb-crud:war exploded" />
+    </root>
+  </artifact>
+</component>

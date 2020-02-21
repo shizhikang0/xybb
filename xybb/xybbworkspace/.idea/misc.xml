@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/xybb-back" />
+    <file type="web" url="file://$PROJECT_DIR$/xybb-crud" />
+    <file type="web" url="file://$PROJECT_DIR$/xybb-manage" />
+    <file type="web" url="file://$PROJECT_DIR$/xybb-sso" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/xybb-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/xybb-common/pom.xml" />
+        <option value="$PROJECT_DIR$/xybb-crud/pom.xml" />
+        <option value="$PROJECT_DIR$/xybb-sso/pom.xml" />
+        <option value="$PROJECT_DIR$/xybb-manage/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/xybb-back/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
