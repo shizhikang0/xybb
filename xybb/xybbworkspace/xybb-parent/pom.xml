@@ -13,7 +13,7 @@
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <pagehelper.version>5.0.0</pagehelper.version>
       <mybatis.generator.version>1.3.5</mybatis.generator.version>
-      <spring.version>4.3.7.RELEASE</spring.version>
+      <spring.version>5.3.18</spring.version>
       <aopalliance.version>1.0</aopalliance.version>
       <freemarker.version>2.3.23</freemarker.version>
       <jackson-databind.version>2.8.8</jackson-databind.version>
